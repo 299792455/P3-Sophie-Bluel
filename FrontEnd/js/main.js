@@ -15,7 +15,7 @@ async function fetchCategories() {
 // Fonction pour afficher les travaux dans la galerie
 function displayWorks(works) {
     const gallery = document.querySelector('.gallery');
-    gallery.innerHTML = ''; // Vider la galerie actuelle
+    gallery.innerHTML = ''; // Vide la galerie actuelle
 
     works.forEach(work => {
         const workElement = document.createElement('figure');
@@ -38,9 +38,9 @@ function displayWorks(works) {
 // Fonction pour afficher les catégories dans le menu
 function displayCategories(categories) {
     const categoryMenu = document.querySelector('#category-menu');
-    categoryMenu.innerHTML = ''; // Vider le menu actuel
+    categoryMenu.innerHTML = ''; // Vide le menu actuel
 
-    // Ajouter un bouton pour "Tous"
+    // Ajout bouton pour "Tous"
     const allButton = document.createElement('button');
     allButton.textContent = 'Tous';
     allButton.addEventListener('click', () => {
@@ -77,3 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     displayWorks(allWorks);
     displayCategories(categories);
 });
+
+
+
+
