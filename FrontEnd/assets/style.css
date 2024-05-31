@@ -52,14 +52,58 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
 }
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
+	align-items: center;
+	padding-top: 20px;
 }
 section {
 	margin: 50px 0
+}
+
+#editionmode {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	align-items: center ;
+	justify-content: center ;
+	height: 50px;
+	width: 100%;
+	background: black;
+	color:white;
+	margin: 0px;
+}
+
+#editiomode a {
+	color: white;
+	text-decoration: none;
+}
+
+.test {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	width: 100%;
+	background: black;
+	margin: 0px;
+	color:white;
+	font-size : 15px;
+}
+
+.test2 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 
 h1{
@@ -88,6 +132,7 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
+	gap: 30px;
 
 }
 nav li {
@@ -98,6 +143,16 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+nav a {
+	text-decoration: none;
+	color: black;
+}
+
+li img {
+	padding-bottom: 0px;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -120,10 +175,30 @@ li:hover {
 
 #introduction p {
 	margin-bottom: 0.5em;
+	text-align: justify;
+	line-height: 1.3;
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+
+}
+
+.modif {
+	display: flex;
+	gap: 50px;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 3em;
+}
+
+#modifier {
+	display: flex;
+	display: none;
+}
+
+#modifier a {
+	text-decoration: none;
+	color: black;
 }
 
 #category-menu {
@@ -141,7 +216,7 @@ li:hover {
 	padding-right: 20px;
 	margin-right: 20px;
 	color: #1D6154;
-	background-color: white;
+	background-color: #FFFEF8;
 	font-family: 'Syne';
 	font-weight: 700;
 	border-width: 1px;
@@ -208,19 +283,23 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+footer {
+	background-color: white !important;
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
 }
 
-/*Pge Login */
+/*Page Login */
 
 #Connexion form {
 	display: flex;
 	flex-direction: column;
+	text-align: left;
 	align-items: center;
-
 }
 
 .titre-login {
@@ -228,3 +307,70 @@ footer nav ul {
 	align-items: center;
 	justify-content: center;
 }
+
+#Connexion {
+	width: 100%;
+	margin: auto;
+}
+
+#Connexion h2{
+	margin-bottom: 20px;
+}
+
+#Connexion input {
+	height: 40px;
+	width: 30%;
+	font-size: 1em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	text-align: center;
+}
+#Connexion label {
+	margin: 2em 0 0 0;
+	text-align: left;
+	width: 30%;
+}
+
+#Connexion input[type="submit"]{
+	margin-top: 50px;
+	width: 17%;
+	height: 35px;
+}
+
+
+/* Config Modal */
+
+.modal {
+	display: none; 
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%;
+  }
+  
+  .close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }

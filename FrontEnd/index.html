@@ -9,8 +9,17 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="https://kit.fontawesome.com/eac4adc12d.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<!-- <section id="editionmode">
+	<a href = ""><i class="fa-solid fa-pen-to-square fa-lg" style="color: #ffffff;"></i>Mode édition</a>
+</section> -->
+<div class="test" id="test">
+	<div class="test2">
+	<i class="fa-solid fa-pen-to-square fa-lg"></i><p>Mode édition</p>
+	</div>
+</div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -35,7 +44,18 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="modif">
+			<h2>Mes Projets</h2>
+				<div id="modifier"> <!-- Modif Admin -->
+					<a id="openModalBtn" href = ""><i class="fa-solid fa-pen-to-square fa-lg" style="color: #000000;"></i>modifier</a>
+					<div id="myModal" class="modal"> <!-- Modal -->
+						<div class="modal-content">
+						  <span class="close">&times;</span> <!-- Fermeture Modal -->
+						</div>
+					  </div>
+				</div>
+				
+		</div>
 		<div id="category-menu">
 		</div>
 		<div class="gallery">
@@ -65,5 +85,6 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="/FrontEnd/js/Auth.js"></script>
+<script src="/FrontEnd/js/modif.js"></script>
 </body>
 </html>
