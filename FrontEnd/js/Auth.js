@@ -2,12 +2,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const authvalid = document.getElementById("authvalid");
+    const modifier = document.getElementById("modifier");
+    const editionMode = document.getElementById("editionmode");
 
     // Vérifie le token d'authentification au chargement de la page
     const authToken = localStorage.getItem('authToken');
     if (authToken) {
         authvalid.innerHTML = "Logout";
         authvalid.href = "#"; // Empêche la redirection par défaut
+        modifier.style.display="flex"; //Affiche le bouton modifier
+        editionMode.style.display="flex"; 
     }
 
     if (loginForm) {
