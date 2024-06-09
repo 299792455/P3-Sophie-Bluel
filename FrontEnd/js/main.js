@@ -20,6 +20,7 @@ function displayWorks(works) {
     works.forEach(work => {
         const workElement = document.createElement('figure');
         workElement.classList.add('work');
+        workElement.setAttribute('data-id', work.id); // Ajouter l'attribut data-id
         
         const img = document.createElement('img');
         img.src = work.imageUrl;
