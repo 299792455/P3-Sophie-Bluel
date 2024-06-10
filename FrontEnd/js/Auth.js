@@ -64,4 +64,4 @@ async function authenticateUser(email, password) {
         console.error('Erreur lors de la tentative d\'authentification', error);
         return false;
     }
-}s
+}

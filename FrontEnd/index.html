@@ -33,7 +33,7 @@
 </header>
 <main>
 	<section id="introduction">
-		<figure>
+		<figure alt="data-id">
 			<img src="./assets/images/sophie-bluel.png" alt="">
 		</figure>
 		<article>
@@ -51,7 +51,22 @@
 					<div id="myModal" class="modal"> <!-- Modal -->
 						<div class="modal-content">
 						  <span class="close">&times;</span> <!-- Fermeture Modal -->
+						  <h2>Galerie photo</h2>
+						  <div class="modal-gallery"></div> <!-- Gallerie travaux -->
+						  <button class="modifBtn" type="submit">Ajouter une photo</button>
 						</div>
+						<!-- Formulaire pour ajouter un nouveau projet -->
+                        <form id="addProjectForm" style="display: none;">
+							<label for="title">Titre:</label>
+							<input type="text" id="title" name="title" required>
+							<label for="image">Image:</label>
+							<input type="file" id="image" name="image" accept="image/*" required>
+							<label for="category">Catégorie:</label>
+							<input type="number" id="category" name="category" required>
+							<button type="submit">Ajouter</button>
+						</form>
+                        <div id="error-message" style="display: none; color: red;"></div>
+
 					  </div>
 				</div>
 				
