@@ -56,14 +56,20 @@
 						  <button class="modifBtn" type="submit">Ajouter une photo</button>
 						</div>
 						<!-- Formulaire pour ajouter un nouveau projet -->
-                        <form id="addProjectForm" style="display: none;">
-							<label for="title">Titre:</label>
-							<input type="text" id="title" name="title" required>
-							<label for="image">Image:</label>
-							<input type="file" id="image" name="image" accept="image/*" required>
-							<label for="category">Catégorie:</label>
-							<input type="number" id="category" name="category" required>
-							<button type="submit">Ajouter</button>
+                        <form id="addProjectForm" >
+							<div class="addProjectForm-content">
+								<span class="close-form">&larr;</span> <!-- Retour Modal -->
+								<h2>Ajout photo</h2>
+								<label for="image"></label>
+								<input type="file" id="image" name="image" accept="image/*" required>
+								<img id="preview" src="" alt="Prévisualisation" style="display: none; max-width: 100%; height: auto; margin-top: 10px;" />
+								<label for="title">Titre:</label>
+								<input type="text" id="title" name="title" required>
+								<label for="category">Catégorie:</label>
+								<select id="category" name="category" required>
+								</select>
+								<button type="submit">Valider</button>
+							</div>
 						</form>
                         <div id="error-message" style="display: none; color: red;"></div>
 
@@ -98,8 +104,8 @@
 		</ul>
 	</nav>
 </footer>
-<script src="js/main.js"></script>
-<script src="/FrontEnd/js/Auth.js"></script>
-<script src="/FrontEnd/js/modif.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/Auth.js"></script>
+<script src="./js/modif.js"></script>
 </body>
 </html>

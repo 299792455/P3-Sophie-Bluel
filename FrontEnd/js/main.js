@@ -9,6 +9,7 @@ async function fetchWorks() {
 async function fetchCategories() {
     const response = await fetch('http://localhost:5678/api/categories');
     const categories = await response.json();
+    console.log('Catégories récupérées :', categories); // Log pour vérifier les catégories récupérées
     return categories;
 }
 
@@ -69,6 +70,21 @@ function filterWorks(categoryId) {
     }
 }
 
+// Fonction pour remplir le menu déroulant des catégories
+function populateCategorySelect(categories) {
+    const categorySelect = document.getElementById('category');
+    console.log('Remplissage du menu déroulant des catégories :', categories); // Log pour vérifier les catégories passées
+    if (categorySelect) {
+        categorySelect.innerHTML = ''; // Vide les options actuelles
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+            categorySelect.appendChild(option);
+        });
+    }
+}
+
 let allWorks = [];
 
 // Charger les travaux et les catégories après le chargement du DOM
@@ -77,8 +93,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     const categories = await fetchCategories();
     displayWorks(allWorks);
     displayCategories(categories);
+    populateCategorySelect(categories); // Appel pour remplir le menu déroulant
 });
-
-
-
-
