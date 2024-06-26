@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const authvalid = document.getElementById("authvalid");
     const modifier = document.getElementById("modifier");
     const editionMode = document.getElementById("editionmode");
+    const filterButtons = document.getElementById("category-menu");
 
     // Vérifie le token d'authentification au chargement de la page
     const authToken = localStorage.getItem('authToken');
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         authvalid.href = "#"; // Empêche la redirection par défaut
         modifier.style.display="flex"; //Affiche le bouton modifier
         editionMode.style.display="flex"; 
+        filterButtons.style.display = "none"; // Cache les boutons de filtrage
     }
 
     if (loginForm) {

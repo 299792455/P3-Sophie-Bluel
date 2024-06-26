@@ -56,17 +56,25 @@
 						  <button class="modifBtn" type="submit">Ajouter une photo</button>
 						</div>
 						<!-- Formulaire pour ajouter un nouveau projet -->
-                        <form id="addProjectForm" >
+                        <form id="addProjectForm">
 							<div class="addProjectForm-content">
-								<span class="close-form">&larr;</span> <!-- Retour Modal -->
+								<span class="close-form"><i class="fas fa-arrow-left"></i></span>
+								<span class="close">&times;</span> <!-- Fermeture Modal -->
 								<h2>Ajout photo</h2>
-								<label for="image"></label>
-								<input type="file" id="image" name="image" accept="image/*" required>
-								<img id="preview" src="" alt="Prévisualisation" style="display: none; max-width: 100%; height: auto; margin-top: 10px;" />
-								<label for="title">Titre:</label>
+								<div class="back-ajout">
+								<i class="fa-regular fa-image fa-xl"></i>
+								<input type="file" id="image" name="image" accept="image/*" required class="hidden-input">
+								<label for="image" class="custom-button"> + Ajouter photo</label>
+								<p>Jpg, png : 4mo max.</p>
+									<div class="image-preview-container">
+									<img id="preview" src="" alt="Prévisualisation" style="display: none; max-width: 100%; height: auto; margin-top: 10px;" />
+									</div> 
+								</div>
+								<label for="title">Titre</label>
 								<input type="text" id="title" name="title" required>
-								<label for="category">Catégorie:</label>
+								<label for="category">Catégorie</label>
 								<select id="category" name="category" required>
+								<option value=""></option>
 								</select>
 								<button type="submit">Valider</button>
 							</div>
@@ -78,6 +86,7 @@
 				
 		</div>
 		<div id="category-menu">
+			<button id="btn-all">Tous</button>
 		</div>
 		<div class="gallery">
 		</div>
