@@ -1,8 +1,8 @@
-// Accès Modal
+// Accès Modale
 const modal = document.getElementById('myModal');
 const addProjectFormModal = document.getElementById('addProjectForm');
 
-// Accès Bouton Modal
+// Accès Bouton Modale
 const openModalBtn = document.getElementById('openModalBtn');
 
 // Accès croix/close window pour la première modale
@@ -42,7 +42,7 @@ if (openModalBtn) {
     openModalBtn.addEventListener('click', async function(event) {
         event.preventDefault(); 
         modal.style.display = 'block';
-        displayWorkModal(allWorks); // Affichage travaux modal
+        displayWorkModal(allWorks); // Affichage travaux modale
 
         const categories = await fetchCategories(); // Récupérer les catégories
         console.log('Catégories pour la modale :', categories); // Log pour vérifier les catégories récupérées pour la modale
