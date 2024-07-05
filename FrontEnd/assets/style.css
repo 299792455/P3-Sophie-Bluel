@@ -106,26 +106,10 @@ section {
 	text-decoration: none;
 }
 
-.test {
-	display: none;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 50px;
-	width: 100%;
-	background: black;
-	margin: 0px;
-	color:white;
-	font-size: 15px;
+.fa-solid {
+	margin-right: 10px;
 }
 
-.test2 {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-}
 
 h1 {
 	display: flex;
@@ -383,7 +367,7 @@ footer nav ul {
 .modal-content {
 	background-color: #fefefe;
 	margin: 15% auto;
-	padding: 30px;
+	padding: 50px;
 	width: 25%;
 	display: flex;
     flex-direction: column;
@@ -527,9 +511,10 @@ footer nav ul {
 	align-items: center;
 	background-color: #fefefe;
 	margin: 15% auto;
-	padding: 30px;
+	padding: 50px;
 	border: 1px solid #888;
 	width: 25%;
+	height: 550px;
     position: relative; 
 	border-radius: 20px;
 }
@@ -538,6 +523,12 @@ footer nav ul {
 	font-size: 70px;
 	margin-bottom: 20px;
 	color: rgb(160, 177, 190);
+}
+
+.separator {
+	height: 2px;
+	width: 100%;
+	border-bottom: lightgray solid 2px;
 }
 
 .addProjectForm-content button {
@@ -550,6 +541,7 @@ footer nav ul {
 	font-size: 16px;
 	font-weight: 300;
 	margin-top: 30px;
+	width: 50%;
 }
 
 .addProjectForm-content h2 {
@@ -582,13 +574,13 @@ footer nav ul {
     position: relative;
     width: 100%;
     height: 200px;
-    border: 2px dashed #ccc;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    background-color: #f9f9f9;
+    background-color: #dce8f0;
+	border-radius: 5px;
 }
 
 .custom-button {
@@ -632,6 +624,7 @@ footer nav ul {
     height: 30px;
     font-size: 1.2em;
     width: 100%;
+	margin-bottom: 40px;
 }
 
 #addProjectForm label {

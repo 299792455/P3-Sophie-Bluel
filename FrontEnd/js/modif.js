@@ -107,9 +107,9 @@ function validateFile(file) {
     return true;
 }
 
-// Etat du bouton de soumission
+// Confirmation du bouton de soumission
 function updateSubmitButtonState() {
-    const title = document.getElementById('title').value;
+    const title = document.getElementById('title').value.trim(); 
     const imageInput = document.getElementById('image').files[0];
     const category = document.getElementById('category').value;
 
