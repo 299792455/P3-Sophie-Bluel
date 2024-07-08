@@ -197,6 +197,8 @@ addProjectForm.addEventListener('submit', async (event) => {
 
             // Mettre à jour les catégories filtrées
             filterWorks(currentCategoryId); // Actualiser la vue de la catégorie actuelle
+              // Afficher une alerte de confirmation
+              alert('Le travail a été ajouté avec succès.');
         } else {
             const errorData = await response.json();
             errorMessage.textContent = `Erreur: ${errorData.message || 'Une erreur s\'est produite.'}`;
