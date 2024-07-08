@@ -106,15 +106,9 @@ section {
 	text-decoration: none;
 }
 
-#editionmode i {
-	color: white;
-}
-
 .fa-solid {
 	margin-right: 10px;
-	color: black;
 }
-
 
 h1 {
 	display: flex;
@@ -440,88 +434,27 @@ footer nav ul {
 	display: none;
 }
 
-.modal-content {
+.modal-view {
+	display: none;
+}
+
+#galleryView {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
 }
 
-.modal-content h2 {
-	color: black;
-	font: inherit;
-	font-weight: 500;
-	font-size: 26px;
-	margin-bottom: 40px;
-	margin-top: 20px;
-}
-
-.modal-content button {
-	border: none;
-	background-color: #000000;
-	color: white;
-	padding: 5px 5px 5px 5px;
-	font-family: 'Syne';
-	font-size: 16px;
-	font-weight: 300;
-}
-
-.work {
-	position: relative;
-}
-
-.delete-btn {
-	position: absolute;
-	right: 3px;
-	top: 3px;
-	background: none;
-	border: none;
-	cursor: pointer;
-	color: white;
-	font-size: 0.8em; 
-	padding: 0;
-}
-
-.delete-btn:hover {
-	color: darkred; 
-	background-color: white;
-}
-
-.delete-btn i {
-	pointer-events: none; /* Pour que l'icône ne capte pas les clics */
-}
-
-.modifBtn {
-	background-color: #1D6154 !important;
-	border-radius: 20px;
-	padding: 10px 35px 10px 35px !important;
-	margin-bottom: 10px;
-}
-
-#addProjectForm {
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0,0.4);
+#addPhotoView {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .addProjectForm-content {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: #fefefe;
-	margin: 15% auto;
-	padding: 50px;
-	border: 1px solid #888;
-	width: 25%;
-	height: 550px;
-    position: relative; 
-	border-radius: 20px;
+	width: 100%;
 }
 
 .addProjectForm-content i {
@@ -534,6 +467,7 @@ footer nav ul {
 	height: 2px;
 	width: 100%;
 	border-bottom: lightgray solid 2px;
+	margin-top: 30px;
 }
 
 .addProjectForm-content button {
@@ -609,13 +543,10 @@ footer nav ul {
 }
 
 #preview {
-	display: none;
-	height: auto;
     box-sizing: border-box;
     max-width: 100%;
     height: 100%;
     object-fit: contain;
-	margin-top: 10px;
 }
 
 #addProjectForm input {
@@ -635,30 +566,83 @@ footer nav ul {
 	margin-bottom: 40px;
 }
 
-#addProjectForm label {
-    padding: 5px;
-}
-
-.addProjectForm-content label,
-.addProjectForm-content input,
-.addProjectForm-content select {
+#addProjectForm input,
+#addProjectForm select {
     text-align: left;
     width: 100%;
+	margin-top: 5px;
+	margin-bottom: 20px;
 }
 
-/* Bouton de soumission désactivé */
 #addProjectForm button[type="submit"]:disabled {
+	margin-top: 30px;
     background-color: gray;
     cursor: not-allowed;
+	border-radius: 20px;
+    padding: 10px 35px 10px 35px;
+	display: block; /* Assurez-vous que le bouton est un bloc pour centrer */
+    margin-left: auto; /* Ajouté pour centrer */
+    margin-right: auto; /* Ajouté pour centrer */
 }
 
-/* Bouton de soumission activé */
 #addProjectForm button[type="submit"]:enabled {
-    background-color: #1D6154;
+    margin-top: 30px;
+	background-color: #1D6154;
     cursor: pointer;
+	border-radius: 20px;
+    padding: 10px 35px 10px 35px;
+	display: block; /* Assurez-vous que le bouton est un bloc pour centrer */
+    margin-left: auto; /* Ajouté pour centrer */
+    margin-right: auto; /* Ajouté pour centrer */
 }
 
-#error-message {
-	display: none;
-	color: red;
+
+.work {
+	position: relative;
+}
+
+.modal-content button {
+	border: none;
+	background-color: #000000;
+	color: white;
+	padding: 4px 4px 4px 4px;
+	font-family: 'Syne';
+	font-size: 15px;
+	font-weight: 300;
+}
+
+.modal-content h2 {
+	margin-bottom: 40px;
+}
+
+.delete-btn {
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	background:none;
+	border: none;
+	cursor: pointer;
+	color: white;
+	font-size: 0.8em; 
+	padding: 0;
+}
+
+
+.delete-btn:hover {
+	color: darkred; 
+	background-color: white;
+}
+
+.delete-btn i {
+	pointer-events: none; /* Pour que l'icône ne capte pas les clics */
+}
+
+.modifBtn {
+	background-color: #1D6154 !important;
+	border-radius: 20px;
+	padding: 10px 35px 10px 35px !important;
+	margin-bottom: 10px;
+	margin-left: auto; /* Ajouté pour centrer */
+    margin-right: auto; /* Ajouté pour centrer */
+    display: block; /* Assurez-vous que le bouton est un bloc pour centrer */
 }

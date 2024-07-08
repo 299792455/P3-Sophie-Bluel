@@ -1,24 +1,18 @@
-// Accès Modale
+// Accès Modal
 const modal = document.getElementById('myModal');
-const addProjectFormModal = document.getElementById('addProjectForm');
 
-// Accès Bouton Modale
+// Accès Bouton Modal
 const openModalBtn = document.getElementById('openModalBtn');
 
-// Accès croix/close window pour la première modale
+// Accès croix/close window pour la modale
 const closeModalBtn = modal.querySelector('.close');
 
-// Accès croix/close window pour la deuxième modale (formulaire d'ajout de projet)
-const closeAddProjectFormBtn = addProjectFormModal.querySelector('.close');
+// Accès Retour à la galerie
+const backToGalleryBtn = modal.querySelector('.close-form');
 
-// Accès Retour Modal (Retour à la modale principale)
-const closeAddProjectFormBackBtn = addProjectFormModal.querySelector('.close-form');
-
-// Accès Galerie Modal
-const modalGallery = document.querySelector(".modal-gallery");
-
-// Accès Bouton "Ajouter une photo"
-const addPhotoBtn = document.querySelector('.modifBtn');
+// Accès vues modales
+const galleryView = document.getElementById('galleryView');
+const addPhotoView = document.getElementById('addPhotoView');
 
 // Accès Formulaire d'ajout de projet
 const addProjectForm = document.getElementById('addProjectForm');
@@ -29,64 +23,52 @@ const preview = document.getElementById('preview');
 const submitButton = addProjectForm.querySelector('button[type="submit"]');
 
 // Affichage Formulaire d'ajout
-if (addPhotoBtn) {
-    addPhotoBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        addProjectFormModal.style.display = 'block'; // Affiche le formulaire
-        resetForm();
-    });
-}
+document.querySelector('.modifBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    galleryView.style.display = 'none';
+    addPhotoView.style.display = 'block';
+    resetForm();
+    resetAddPhotoElements(); // Réinitialise l'état des éléments
+});
 
-// Ouverture de la première modale
-if (openModalBtn) {
-    openModalBtn.addEventListener('click', async function(event) {
-        event.preventDefault(); 
-        modal.style.display = 'block';
-        displayWorkModal(allWorks); // Affichage travaux modale
+// Ouverture de la modale
+openModalBtn.addEventListener('click', async function(event) {
+    event.preventDefault(); 
+    modal.style.display = 'block';
+    galleryView.style.display = 'block';
+    addPhotoView.style.display = 'none';
+    displayWorkModal(allWorks); // Affichage travaux modal
 
-        const categories = await fetchCategories(); // Récupérer les catégories
-        console.log('Catégories pour la modale :', categories); // Log pour vérifier les catégories récupérées pour la modale
-        populateCategorySelect(categories); // Remplir le menu déroulant
+    const categories = await fetchCategories(); // Récupérer les catégories
+    console.log('Catégories pour la modale :', categories); // Log pour vérifier les catégories récupérées pour la modale
+    populateCategorySelect(categories); // Remplir le menu déroulant
 
-        resetForm(); // Initialise l'état du bouton de soumission
-    });
-}
+    resetForm(); // Initialise l'état du bouton de soumission
+});
 
-// Fermeture de la première modale
-if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-}
+// Fermeture de la modale
+closeModalBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+});
 
-// Fermeture de la deuxième modale
-if (closeAddProjectFormBtn) {
-    closeAddProjectFormBtn.addEventListener('click', function() {
-        addProjectFormModal.style.display = 'none';
-        resetForm();
-    });
-}
-
-// Retour à la modale principale depuis la deuxième modale
-if (closeAddProjectFormBackBtn) {
-    closeAddProjectFormBackBtn.addEventListener('click', function() {
-        addProjectFormModal.style.display = 'none';
-        resetForm();
-    });
-}
+// Retour à la galerie depuis l'ajout photo
+backToGalleryBtn.addEventListener('click', function() {
+    galleryView.style.display = 'block';
+    addPhotoView.style.display = 'none';
+    resetForm();
+    resetAddPhotoElements(); // Réinitialise l'état des éléments
+});
 
 // Fermeture de la modale par clic hors champ
 window.addEventListener('click', function(event) {
     if (event.target == modal) {
         modal.style.display = 'none';
     }
-    if (event.target == addProjectFormModal) {
-        addProjectFormModal.style.display = 'none';
-    }
 });
 
 // Affichage travaux modal
 function displayWorkModal(works) {
+    const modalGallery = document.querySelector(".modal-gallery");
     modalGallery.innerHTML = ''; // Vide la galerie actuelle de la modale
 
     works.forEach(work => {
@@ -129,6 +111,14 @@ function resetForm() {
     updateSubmitButtonState();
     errorMessage.style.display = 'none';
     preview.style.display = 'none';
+    resetAddPhotoElements(); // Réinitialise l'état des éléments
+}
+
+// Réinitialisation des éléments
+function resetAddPhotoElements() {
+    document.querySelector('.custom-button').style.display = 'inline-block';
+    document.querySelector('.back-ajout p').style.display = 'block';
+    document.querySelector('.back-ajout i').style.display = 'block';
 }
 
 // Écouteurs pour mettre à jour l'état du bouton de soumission et la prévisualisation de l'image
@@ -145,6 +135,10 @@ document.getElementById('image').addEventListener('change', function(event) {
         reader.onload = function(e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
+             // Masquer le bouton "Ajouter une photo" et la phrase de restriction
+             document.querySelector('.custom-button').style.display = 'none';
+             document.querySelector('.back-ajout p').style.display = 'none';
+             document.querySelector('.back-ajout i').style.display = 'none';
         };
         reader.readAsDataURL(file);
     } else {
@@ -156,65 +150,64 @@ document.getElementById('image').addEventListener('change', function(event) {
 });
 
 // Soumission du formulaire
-if (addProjectForm) {
-    addProjectForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+addProjectForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-        const title = document.getElementById('title').value;
-        const imageInput = document.getElementById('image').files[0];
-        const category = document.getElementById('category').value;
+    const title = document.getElementById('title').value;
+    const imageInput = document.getElementById('image').files[0];
+    const category = document.getElementById('category').value;
 
-        // Validation du fichier
-        const fileError = !validateFile(imageInput);
-        if (fileError) {
-            errorMessage.textContent = 'Fichier invalide. Veuillez choisir un fichier JPG ou PNG de moins de 4 Mo.';
-            errorMessage.style.display = 'block';
-            return;
-        }
+    // Validation du fichier
+    const fileError = !validateFile(imageInput);
+    if (fileError) {
+        errorMessage.textContent = 'Fichier invalide. Veuillez choisir un fichier JPG ou PNG de moins de 4 Mo.';
+        errorMessage.style.display = 'block';
+        return;
+    }
 
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('image', imageInput);
-        formData.append('category', category);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('image', imageInput);
+    formData.append('category', category);
 
-        try {
-            const token = localStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5678/api/works', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/json'
-                },
-                body: formData
-            });
+    try {
+        const token = localStorage.getItem('authToken');
+        const response = await fetch('http://localhost:5678/api/works', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/json'
+            },
+            body: formData
+        });
 
-            if (response.ok) {
-                const newWork = await response.json();
-                allWorks.push(newWork); // Ajouter le nouveau projet à la liste des travaux
-                displayWorks(allWorks); // Mettre à jour la galerie principale
+        if (response.ok) {
+            const newWork = await response.json();
+            allWorks.push(newWork); // Ajouter le nouveau projet à la liste des travaux
+            displayWorks(allWorks); // Mettre à jour la galerie principale
 
-                // Ajouter le nouveau projet à la modale
-                const newWorkElement = createWorkElement(newWork);
-                modalGallery.appendChild(newWorkElement);
+            // Ajouter le nouveau projet à la modale
+            const newWorkElement = createWorkElement(newWork);
+            const modalGallery = document.querySelector(".modal-gallery");
+            modalGallery.appendChild(newWorkElement);
 
-                // Réinitialiser le formulaire
-                resetForm();
-                addProjectFormModal.style.display = 'none';
+            // Réinitialiser le formulaire
+            resetForm();
+            modal.style.display = 'none';
 
-                // Mettre à jour les catégories filtrées
-                filterWorks(currentCategoryId); // Actualiser la vue de la catégorie actuelle
-            } else {
-                const errorData = await response.json();
-                errorMessage.textContent = `Erreur: ${errorData.message || 'Une erreur s\'est produite.'}`;
-                errorMessage.style.display = 'block';
-            }
-        } catch (error) {
-            console.error('Erreur:', error);
-            errorMessage.textContent = 'Une erreur s\'est produite lors de l\'ajout du projet.';
+            // Mettre à jour les catégories filtrées
+            filterWorks(currentCategoryId); // Actualiser la vue de la catégorie actuelle
+        } else {
+            const errorData = await response.json();
+            errorMessage.textContent = `Erreur: ${errorData.message || 'Une erreur s\'est produite.'}`;
             errorMessage.style.display = 'block';
         }
-    });
-}
+    } catch (error) {
+        console.error('Erreur:', error);
+        errorMessage.textContent = 'Une erreur s\'est produite lors de l\'ajout du projet.';
+        errorMessage.style.display = 'block';
+    }
+});
 
 // Fonction pour créer un élément de travail
 function createWorkElement(work) {
@@ -235,7 +228,7 @@ function createWorkElement(work) {
     deleteBtn.classList.add('delete-btn');
     deleteBtn.onclick = (event) => {
         event.stopPropagation();
-        deleteWork(work.id);
+        confirmAndDeleteWork(work.id);
     };
 
     workElement.appendChild(img);
@@ -243,6 +236,15 @@ function createWorkElement(work) {
     workElement.appendChild(deleteBtn);
 
     return workElement;
+}
+
+// Fonction de confirmation et suppression des travaux
+async function confirmAndDeleteWork(workId) {
+    const confirmDeletion = window.confirm('Êtes-vous sûr de vouloir supprimer ce travail ?');
+    if (confirmDeletion) {
+        await deleteWork(workId);
+        alert('Le travail a été supprimé avec succès.');
+    }
 }
 
 // Suppression travaux modal
@@ -275,7 +277,7 @@ async function deleteWork(workId) {
             if (modalWorkElement) {
                 modalWorkElement.remove();
             } else {
-                console.warn(`Element with data-id="${workId}" not found in modal gallery.`);
+                console.warn(`Element with data-id="${workId}"] not found in modal gallery.`);
             }
         } else {
             console.error('Erreur lors de la suppression du travail');
@@ -284,62 +286,3 @@ async function deleteWork(workId) {
         console.error('Erreur:', error);
     }
 }
-
-// Hide des boutons lors de la preview
-document.addEventListener('DOMContentLoaded', () => {
-    const imageInput = document.getElementById('image');
-    const imagePreview = document.getElementById('preview');
-    const addButton = document.querySelector('.custom-button');
-    const infoText = document.querySelector('.back-ajout p');
-    const icon = document.querySelector('.back-ajout i');
-    const addProjectForm = document.getElementById('addProjectForm');
-    const spanContent = document.querySelector('.close-form');
-    
-    // Fonction pour réinitialiser la modale d'ajout
-    function resetAddPhotoModal() {
-        imageInput.value = '';
-        imagePreview.src = '';
-        imagePreview.style.display = 'none';
-        addButton.style.display = 'inline-block';
-        infoText.style.display = 'block';
-        icon.style.display = 'block';
-    }
-
-    // Réinitialiser la modale d'ajout lorsqu'elle est ouverte
-    const addPhotoBtn = document.querySelector('.modifBtn');
-    if (addPhotoBtn) {
-        addPhotoBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            addProjectForm.style.display = 'block'; // Affiche le formulaire
-            resetAddPhotoModal();
-        });
-    }
-
-    // Retour à la modale principale et réinitialiser la modale d'ajout
-    if (spanContent) {
-        spanContent.addEventListener('click', function() {
-            addProjectForm.style.display = 'none';
-            resetAddPhotoModal();
-        });
-    }
-
-    imageInput.addEventListener('change', event => {
-        const file = event.target.files[0];
-
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            
-            reader.addEventListener('load', e => {
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-                addButton.style.display = 'none';
-                infoText.style.display = 'none';
-                icon.style.display = 'none';
-            });
-
-            reader.readAsDataURL(file);
-        } else {
-            resetAddPhotoModal();
-        }
-    });
-});

@@ -13,22 +13,22 @@
 </head>
 <body>
 <section id="editionmode">
-	<a href = ""><i class="fa-solid fa-pen-to-square fa-lg"></i>Mode édition</a>
+	<a href = ""><i class="fa-solid fa-pen-to-square fa-lg" style="color: #ffffff;"></i>Mode édition</a>
 </section> 
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li><a href="index.html">projets</a></li>
-			<li><a href="index.html">contact</a></li>
-			<li><a id="authvalid" href="login.html">login</a></li>
+			<li><a href="index.html" alt="Accueil">projets</a></li>
+			<li>contact</li>
+			<li><a id="authvalid" href="login.html" alt="Page de Connexion">login</a></li>
 			<li><a href="https://www.instagram.com/"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 		</ul>
 	</nav>
 </header>
 <main>
 	<section id="introduction">
-		<figure>
+		<figure alt="data-id">
 			<img src="./assets/images/sophie-bluel.png" alt="">
 		</figure>
 		<article>
@@ -42,45 +42,44 @@
 		<div class="modif">
 			<h2>Mes Projets</h2>
 				<div id="modifier"> <!-- Modif Admin -->
-					<a id="openModalBtn" href = ""><i class="fa-solid fa-pen-to-square fa-lg"></i>modifier</a>
+					<a id="openModalBtn" href = ""><i class="fa-solid fa-pen-to-square fa-lg" style="color: #000000;"></i>modifier</a>
 					<div id="myModal" class="modal"> <!-- Modal -->
 						<div class="modal-content">
 						  <span class="close">&times;</span> <!-- Fermeture Modal -->
-						  <h2>Galerie photo</h2>
-						  <div class="modal-gallery"></div> <!-- Gallerie travaux -->
-						  <button class="modifBtn" type="submit">Ajouter une photo</button>
+						  <div id="galleryView" class="modal-view"> <!-- Gallerie travaux -->
+							  <h2>Galerie photo</h2>
+							  <div class="modal-gallery"></div>
+							  <button class="modifBtn" type="button">Ajouter une photo</button>
+						  </div>
+						  <div id="addPhotoView" class="modal-view" style="display: none;"> <!-- Ajout photo -->
+							  <span class="close-form"><i class="fas fa-arrow-left"></i></span>
+							  <h2>Ajout photo</h2>
+							  <form id="addProjectForm">
+								  <div class="back-ajout">
+								  <i class="fa-regular fa-image fa-xl"></i>
+								  <input type="file" id="image" name="image" accept="image/*" required class="hidden-input">
+								  <label for="image" class="custom-button"> + Ajouter photo</label>
+								  <p>Jpg, png : 4mo max.</p>
+								  <div class="image-preview-container">
+									  <img id="preview" src="" alt="Prévisualisation" style="display: none; max-width: 100%; height: auto; margin-top: 10px;" />
+								  </div> 
+								  </div>
+								  <label for="title">Titre</label>
+								  <input type="text" id="title" name="title" required>
+								  <label for="category">Catégorie</label>
+								  <select id="category" name="category" required>
+									  <option value=""></option>
+								  </select>
+								  <div class="separator"></div>
+								  <button type="submit">Valider</button>
+								  <div id="error-message" style="display: none; color: red;"></div>
+							  </form>
+						  </div>
 						</div>
-						<!-- Formulaire pour ajouter un nouveau projet -->
-                        <form id="addProjectForm">
-							<div class="addProjectForm-content">
-								<span class="close-form"><i class="fas fa-arrow-left"></i></span>
-								<span class="close">&times;</span> <!-- Fermeture Modal -->
-								<h2>Ajout photo</h2>
-								<div class="back-ajout">
-								<i class="fa-regular fa-image fa-xl"></i>
-								<input type="file" id="image" name="image" accept="image/*" required class="hidden-input">
-								<label for="image" class="custom-button"> + Ajouter photo</label>
-								<p>Jpg, png : 4mo max.</p>
-									<div class="image-preview-container">
-									<img id="preview" src="" alt="Prévisualisation"/>
-									</div> 
-								</div>
-								<label for="title">Titre</label>
-								<input type="text" id="title" name="title" required>
-								<label for="category">Catégorie</label>
-								<select id="category" name="category" required>
-									<option value="">Choisir une catégorie</option>
-								</select>
-								<div class="separator"></div>
-								<button type="submit">Valider</button>
-							</div>
-						</form>
-                        <div id="error-message"></div>
-
-					  </div>
-				</div>
-				
+					</div>
+				</div>	
 		</div>
+
 		<div id="category-menu">
 			<button id="btn-all">Tous</button>
 		</div>
